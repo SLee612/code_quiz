@@ -1,0 +1,111 @@
+
+
+body {
+  font-size: 30;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding-top: 90px;
+  background-color: wheat;
+}
+
+button {
+  border-radius: 25px;
+  background-color: darkseagreen;
+  color: darkslategrey;
+  font-weight: bold;
+  height: 40px;
+  width: 100px;
+  box-shadow: 2px 2px 6px darkolivegreen;
+}
+
+button:hover {
+  background-color: darkgreen;
+  color: darkseagreen;
+  cursor: pointer;
+  
+}
+
+.navbar {
+  background-color: darkgreen; 
+  color: goldenrod; 
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-top: 10px;
+  border-bottom: solid;
+  border-bottom-color: darkseagreen;
+  width: 100%;
+  
+}
+
+#navbar-title {
+  padding: 15px;
+  font-size: 60px;
+  color: darkseagreen;
+  text-shadow: 2px 2px 6px lightseagreen;
+  text-align: center;
+}
+
+.container-fluid {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.nav-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background-color: darkgreen;  
+  color: darkseagreen;
+}
+
+
+#details {
+  background-color: darkseagreen;  
+  color: darkolivegreen;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  padding: 40px;
+  text-align: center;
+} 
+ 
+
+li {
+  height: 50px;
+  width: 400px;
+  border-radius: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: darkslategrey;
+  color: goldenrod;
+  font-size: 25px;
+  line-height: 20px;
+  list-style-type: none;
+  box-shadow: 2px 2px 6px lightgoldenrodyellow;
+}
+
+li:hover {
+  background-color: lightgoldenrodyellow;
+  cursor: pointer;
+}
+
+
+/* media query for screen size to be applied to center text to switch at same time as navbar */
+@media (max-width: 768px) {
+  .container-fluid {
+    /* removes paddding on either side */
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+/* removes verticle lines between text */
+  li {
+    border-right: none;
+  }
+
+/* collapses space between menu options when they stack vertically*/
+  .nav-link{
+    padding: 1px;
+  }
+}
