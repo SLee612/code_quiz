@@ -178,24 +178,17 @@ function scoreAnswer(cur) {
 }
 
 function showAnswers(cur) {
-  // if (test) { console.log("--- showAnswer ---"); }
-  // if (test) { console.log("sa qanda",cur);}
-  // if (test) { console.log("sselected ",selectedItem);}
-
 
   for (let i=0; i<cur.choices.length; i++) {
     if (test) { console.log("sa in for ",i);}
 
     let questid = "#questionNum-" + i;
     let questrow = document.querySelector(questid);
-    // if (test) { console.log("saf selected" + selectedItem + "<");}
-    // if (test) { console.log("saf color test >" +  cur.choices[i] +"<");}
-
     if ( cur.choices[i] !== cur.answer ) {
-      // if (test) { console.log("color test flase");}
+   
       questrow.setAttribute("style","background-color: goldenrod");
     } else {
-      // if (test) { console.log("color test true");}
+     
       questrow.setAttribute("style","background-color: darkgreen");
     }
   }
@@ -210,43 +203,40 @@ function setGameTime() {
   gameSeconds = gameDuration;
 }
 
+    function renderTime() {
 
-function renderTime() {
 
+    gameTimerEl.textContent = gameDuration - gameSecElapsed;
+    quesTimerEl.textContent = questionDuration - questionSecElapsed;
 
-  gameTimerEl.textContent = gameDuration - gameSecElapsed;
-  quesTimerEl.textContent = questionDuration - questionSecElapsed;
-
-  if ( (questionDuration - questionSecElapsed) < 1 ) {
+    if ( (questionDuration - questionSecElapsed) < 1 ) {
     gameDuration -= 10;
     if (test) { console.log("too slow"); }
     presentQuestion();
-  } 
-  if ( (gameDuration - gameSecElapsed) < 1 ) {
-   endOfGame();
+    } 
+    if ( (gameDuration - gameSecElapsed) < 1 ) {
+    endOfGame();
   }
-}
+  }
 
-function startGameTimer () {
+  function startGameTimer () {
   if (test) { console.log("--- startGameTimer ---"); }
   setGameTime();
 
-  gameInterval = setInterval(function() {
+    gameInterval = setInterval(function() {
     gameSecElapsed++; 
     questionSecElapsed++; 
     renderTime();
   }, 1000);
 }
 
-function stopTime() {
-  // if (test) { console.log("--- stopTime --- ");}
+  function stopTime() {
   gameSeconds = 0;
   questionSeconds = 0;
   clearInterval(gameInterval);
 }
 
 function endOfGame() {
-  // if (test) { console.log("--- endOfGame ---"); }
   stopTime();
   clearDetails();
 
@@ -294,51 +284,45 @@ function endOfGame() {
   initialsInput.addEventListener("input", function() {
     initialsInput.value = initialsInput.value.toUpperCase();
     if ( initialsInput.value.length === 3 ) { 
-      let thisScore = [ { type: quizType, name: initialsInput.value, score: score } ]; 
-      let storedScores = JSON.parse(localStorage.getItem("highScores")); 
-      // if (test) { console.log("storedScore",storedScores); }
-
-      if (storedScores !== null) { 
+    let thisScore = [ { type: quizType, name: initialsInput.value, score: score } ]; 
+    let storedScores = JSON.parse(localStorage.getItem("highScores")); 
+    if (storedScores !== null) { 
         storedScores.push(thisScore[0]); 
-      } else {
+  } else {
         storedScores = thisScore;
       }
-
       localStorage.setItem("highScores", JSON.stringify(storedScores));
       highScores();
-    }
-  });
-}
+       }
+      });
+      }
 
-function highScores() {
-  stopTime();
-  clearDetails();
+    function highScores() {
+    stopTime();
+    clearDetails();
 
-  timerTab.setAttribute("style", "visibility: hidden;");
+     timerTab.setAttribute("style", "visibility: hidden;");
 
-  let storedScores = JSON.parse(localStorage.getItem("highScores")); 
+    let storedScores = JSON.parse(localStorage.getItem("highScores")); 
+    let heading = document.createElement("h2");
+    heading.setAttribute("id", "main-heading");
+    heading.textContent = "Top 5 High Score Hall of Fame";
 
-  let heading = document.createElement("h2");
-  heading.setAttribute("id", "main-heading");
-  heading.textContent = "Top 5 High Score Hall of Fame";
+    mainEl.appendChild(heading);
 
-  mainEl.appendChild(heading);
-
-  if ( storedScores !== null ) {
-   
+    if ( storedScores !== null ) {
     storedScores.sort((a,b) => (a.score < b.score) ? 1: -1);
-
     let numScores2Display = 5;
     if ( storedScores.length < 5 ) { 
-      numScores2Display = storedScores.length; 
+    numScores2Display = storedScores.length; 
     }
 
     for (var i = 0; i < numScores2Display; i++) {
-      var s = storedScores[i];
+    var s = storedScores[i];
 
-      var p = document.createElement("p");
-      p.textContent = s.name + " " + s.score + " ( " + s.type + " )";
-      mainEl.appendChild(p);
+    var p = document.createElement("p");
+    p.textContent = s.name + " " + s.score + " ( " + s.type + " )";
+    mainEl.appendChild(p);
     }
   } else {
     var p = document.createElement("p");
