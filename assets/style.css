@@ -91,20 +91,16 @@ li:hover {
 }
 
 
-/* media query for screen size to be applied to center text to switch at same time as navbar */
 @media (max-width: 768px) {
   .container-fluid {
-    /* removes paddding on either side */
     padding-left: 0;
     padding-right: 0;
   }
 
-/* removes verticle lines between text */
   li {
     border-right: none;
   }
 
-/* collapses space between menu options when they stack vertically*/
   .nav-link{
     padding: 1px;
   }
